@@ -8,7 +8,7 @@ public abstract class Utilisateur {
 	private ArrayList<Pari> listPari;
 	private static ArrayList<String> listId = new ArrayList<String>();
 	
-	private  Utilisateur(String id, String nom) {
+	public  Utilisateur(String id, String nom) {
 		super();
 		this.id = id;
 		this.nom = nom;
