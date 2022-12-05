@@ -17,6 +17,10 @@ public abstract class Utilisateur {
 		listId.add(id);
 	}
 	
+	protected void chatter() {
+		System.out.println("Chatter");
+	}
+	
 	
 	
 
