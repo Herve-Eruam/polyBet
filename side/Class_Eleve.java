@@ -34,5 +34,3 @@ public class Eleve {
     public void CreerPariPerso (){
 
     }
-
-}

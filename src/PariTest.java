@@ -11,7 +11,7 @@ public class PariTest {
 		Pari pariTest = new Pari(testUser);
 		int new_id_counter = Pari.getIdCounter();
 		assertTrue(new_id_counter == old_id_counter + 1);
-		}
+	}
 
 	@Test
 	public void testFinPari() {
@@ -51,11 +51,7 @@ public class PariTest {
 		assertEquals(20*(comission/100), gainUserOrga, "Le gain de l'organisateur n'est pas cohérant");
 		assertEquals(gainUser1, 0, "Le gain des perdant n'est pas cohérant");
 		assertEquals(gainUser2, toRedistribute/2, "Le gain des gagnant n'est pas cohérant");
-		assertEquals(gainUser3, toRedistribute/2, "Le gain des gagnant n'est pas cohérant");
-
-		
-		
-		
+		assertEquals(gainUser3, toRedistribute/2, "Le gain des gagnant n'est pas cohérant");	
 	}
 
 	@Test

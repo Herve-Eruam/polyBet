@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Pari {
+	//attributes
 	private Utilisateur creator;
 	private double commission;
 	private String description;
@@ -10,7 +11,7 @@ public class Pari {
 	private Integer Id;
 	private static Integer id_counter = 0;
 	
-	
+	//constructor
 	public Pari(Utilisateur creator) {
 		this.Id = id_counter;
 		id_counter ++;
@@ -21,6 +22,7 @@ public class Pari {
 	}
 
 	
+	//findPari() : close the bet + redistribute earns => to winner,au commissionnaire et 
 	public void finPari(Integer goodBet) {
 		System.out.println("Fin du pari envoie des montants aux parrieurs et benefice a l'organisateur");
 		
@@ -40,10 +42,12 @@ public class Pari {
 		listMise.clear();
 	}
 	
+	//openPari() : open Bet
 	public void openPari() {
 		openForNewBet = true;
 	}
 	
+	//closePari() : close Bet
 	public void closePari() {
 		openForNewBet = false;
 	}
@@ -52,6 +56,7 @@ public class Pari {
 		return openForNewBet;
 	}
   
+	//addMise(): Ajoute une mise dans le pari
 	public boolean addMise(Parrieur parieur, Double amount, Integer bet) {
 		if(this.openForNewBet) {
 			listMise.add(new Mise(parieur, this,  amount, bet));
@@ -64,6 +69,8 @@ public class Pari {
 	public Integer getNbMise() {
 		return this.listMise.size();
 	}
+
+	//getTotalAmout() : Returns the sum collected by the bet
 	private Double getTotalAmout(){
 		Double total = 0.0;
 		for(int i = 0; i <this.listMise.size(); i ++) {
@@ -71,25 +78,30 @@ public class Pari {
 			}
 		return total;
 	}
-	
+
+	//getTotalAmoutFromWinner() : having the amount of the winner or the one who has the good bet
 	private Double getTotalAmoutFromWinner(Integer goodBet){
 		Double total = 0.0;
 		for(int i = 0; i <this.listMise.size(); i ++) {
-			if(this.listMise.get(i).getBet() == goodBet) {
+			if(this.listMise.get(i).getBet() == goodBet) 
 				total += this.listMise.get(i).getAmount();
-			}
 		}
+		
 		return total;
 	}
 	
+	//setDescription() : write a description on the Bet
 	public void setDescription(String descrition) {
 		this.description = descrition;
 	}
 	
+
+	//getDescription() : read the description of a Bet
 	public String getDescription() {
 		return description;
 	}
 	
+	//getId() : return ID
 	public Integer getId() {
 		return Id;
 	}
