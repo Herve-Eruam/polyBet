@@ -19,18 +19,16 @@ public class Pari {
 		this.creator = creator;
 		commission = 10.0;//commisison recup par le createur du pari (en %)
 	}
-	
-	public void miser(Mise mise) {
-		listMise.add(mise);
-	}
+
 	
 	public void finPari(Integer goodBet) {
 		System.out.println("Fin du pari envoie des montants aux parrieurs et benefice a l'organisateur");
+		
 		double totalAmount = this.getTotalAmout(); //Le montant total parié
 		double totalAmountWinner = this.getTotalAmoutFromWinner(goodBet);// Le montant qu'il faut pour rendre a tous les gagnant au minimum ce qu'ils ont misé
 		double amountToRedistribute = totalAmount - totalAmountWinner;
+		creator.notifEndParie(null, (commission/100) * amountToRedistribute);// Donne au createur ca commission
 		amountToRedistribute = amountToRedistribute - (commission/100 * amountToRedistribute);
-		creator.notifEndParie(null, commission/100 * amountToRedistribute);// Donne au createur ca commission
 		for(int i = 0; i <this.listMise.size(); i ++) {
 			if(this.listMise.get(i).getBet() == goodBet) {
 				double parieurMise = this.listMise.get(i).getAmount();
@@ -50,6 +48,10 @@ public class Pari {
 		openForNewBet = false;
 	}
 	
+	public boolean getPariOpenForNewBetState() {
+		return openForNewBet;
+	}
+  
 	public boolean addMise(Parrieur parieur, Double amount, Integer bet) {
 		if(this.openForNewBet) {
 			listMise.add(new Mise(parieur, this,  amount, bet));
@@ -59,6 +61,9 @@ public class Pari {
 		}
 	}
 	
+	public Integer getNbMise() {
+		return this.listMise.size();
+	}
 	private Double getTotalAmout(){
 		Double total = 0.0;
 		for(int i = 0; i <this.listMise.size(); i ++) {
@@ -66,7 +71,6 @@ public class Pari {
 			}
 		return total;
 	}
-	
 	
 	private Double getTotalAmoutFromWinner(Integer goodBet){
 		Double total = 0.0;
@@ -81,6 +85,7 @@ public class Pari {
 	public void setDescription(String descrition) {
 		this.description = descrition;
 	}
+	
 	public String getDescription() {
 		return description;
 	}
@@ -89,5 +94,11 @@ public class Pari {
 		return Id;
 	}
 	
+	public Double getComission() {
+		return commission;
+	}
+	public static Integer getIdCounter() {
+		return id_counter;
+	}
 	
 }
