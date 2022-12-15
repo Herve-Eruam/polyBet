@@ -1,11 +1,11 @@
-public class Eleve {
+public class Class_Eleve {
     private String id_E;
     private String nom;
     private double wallet;
     private Pari Array listPari;
 
 
-    public Eleve (String id_E, String nom, double wallet, Pari Array listPari){
+    public Class_Eleve (String id_E, String nom, double wallet, Pari Array listPari){
             this.id_E = id_E;
             this.nom = nom;
             this.wallet = wallet;
