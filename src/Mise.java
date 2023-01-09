@@ -9,7 +9,6 @@ public class Mise {
 	
 	//constructor
 	public Mise(Parrieur parieur,Pari parie, Double amount, Integer bet) {
-		super();
 		this.parieur = parieur;
 		this.amount = amount;
 		this.bet = bet;
