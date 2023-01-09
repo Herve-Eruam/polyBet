@@ -17,6 +17,10 @@ public abstract class Utilisateur implements Parrieur {
 		listId.add(id);
 	}
 	
+	public String getName() {
+		return nom;
+	}
+	
 	//chatter() : chat
 	protected void chatter() {
 		System.out.println("Chatter");
@@ -24,6 +28,8 @@ public abstract class Utilisateur implements Parrieur {
 	
 	//notifEndParie() : 
 	public void notifEndParie(Pari pari, Double gain) {
+		System.out.println(nom + " gagne " + gain);
+
 		wallet += gain;
 	}
 	

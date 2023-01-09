@@ -2,21 +2,20 @@ import java.util.ArrayList;
 
 public class Pari {
 	//attributes
-	private Utilisateur creator;
-	private double commission;
-	private String description;
-	private ArrayList <String> chatbox = new ArrayList<String>(); // Create an ArrayList object
+	private Utilisateur creator;//L'utilisateur qui à crée le pari
+	private double commission;//La commission en % qui serat reversé au créateur
+	private String description;//La descritption du pari
 	private ArrayList <Mise> listMise = new ArrayList<Mise>(); // Create an ArrayList object
-	private boolean openForNewBet; // indique si le parie peut recevoir de nouvelle mise. 
+	private boolean openForNewBet; // indique si le parie peut recevoir de nouvelles mises. 
 	private Integer Id;
-	private static Integer id_counter = 0;
+	private static Integer id_counter = 0;//Permet de donner un ID unique à chaque pari
 	
 	//constructor
 	public Pari(Utilisateur creator) {
 		this.Id = id_counter;
 		id_counter ++;
 		System.out.println("Un pari a ete cree");
-		openForNewBet = false;
+		openForNewBet = true;
 		this.creator = creator;
 		commission = 10.0;//commisison recup par le createur du pari (en %)
 	}
@@ -25,7 +24,6 @@ public class Pari {
 	//findPari() : close the bet + redistribute earns => to winner,au commissionnaire et 
 	public void finPari(Integer goodBet) {
 		System.out.println("Fin du pari envoie des montants aux parrieurs et benefice a l'organisateur");
-		
 		double totalAmount = this.getTotalAmout(); //Le montant total pariÃ©
 		double totalAmountWinner = this.getTotalAmoutFromWinner(goodBet);// Le montant qu'il faut pour rendre a tous les gagnant au minimum ce qu'ils ont misÃ©
 		double amountToRedistribute = totalAmount - totalAmountWinner;

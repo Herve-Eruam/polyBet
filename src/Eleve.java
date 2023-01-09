@@ -10,6 +10,7 @@ public class Eleve extends Utilisateur {
 		this.listMise = new ArrayList<Mise>();
 	}
 	
+	
 	//Miser() : miser dans la liste des paris
 	public void miser(Pari pari, double amount, Integer bet) {
 		pari.addMise(this, amount, bet);
@@ -20,8 +21,6 @@ public class Eleve extends Utilisateur {
 		
 	}
 	
-	/*---  includes chatter() and cashout() from Class Utilisateur ---*/
-
 	//creerPariPerso() : allows Eleve to create own bet
 	public void creerPariPerso() {
 		

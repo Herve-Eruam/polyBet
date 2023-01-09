@@ -48,10 +48,10 @@ public class PariTest {
 
 		double comission = pariTest.getComission();
 		double toRedistribute = 20 - 20*comission/100;
-		assertEquals(20*(comission/100), gainUserOrga, "Le gain de l'organisateur n'est pas cohérant");
-		assertEquals(gainUser1, 0, "Le gain des perdant n'est pas cohérant");
-		assertEquals(gainUser2, toRedistribute/2, "Le gain des gagnant n'est pas cohérant");
-		assertEquals(gainUser3, toRedistribute/2, "Le gain des gagnant n'est pas cohérant");	
+		assertTrue(20*(comission/100) == gainUserOrga, "Le gain de l'organisateur n'est pas cohérant");
+		assertTrue(gainUser1 == 0, "Le gain des perdant n'est pas cohérant");
+		assertTrue(gainUser2 == toRedistribute/2, "Le gain des gagnant n'est pas cohérant");
+		assertTrue(gainUser3 == toRedistribute/2, "Le gain des gagnant n'est pas cohérant");	
 	}
 
 	@Test
@@ -79,10 +79,10 @@ public class PariTest {
 		int nbMise = pariTest.getNbMise();
 		pariTest.closePari();
 		pariTest.addMise(userTestOrga, 10.0, 10);
-		assertEquals(nbMise, pariTest.getNbMise());
+		assertTrue(nbMise == pariTest.getNbMise());
 		pariTest.openPari();
 		pariTest.addMise(userTestOrga, 10.0, 10);
-		assertEquals(nbMise+1, pariTest.getNbMise());
+		assertTrue(nbMise+1 == pariTest.getNbMise());
 	
 		
 	}
