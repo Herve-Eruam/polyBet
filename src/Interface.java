@@ -43,10 +43,7 @@ public class Interface {
         leave.setFont(new Font("Arial", Font.PLAIN, 50));
         eleve.add(leave);
         
-        
-        
-        
-        
+    
         
         
         main.pack();

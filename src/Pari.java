@@ -2,16 +2,15 @@ import java.util.ArrayList;
 
 public class Pari {
 	//attributes
-	private Utilisateur creator;//L'utilisateur qui à crée le pari
-	private double commission;//La commission en % qui serat reversé au créateur
+	private Delegue creator;//L'utilisateur qui ï¿½ crï¿½e le pari
+	private double commission;//La commission en % qui serat reversï¿½ au crï¿½ateur
 	private String description;//La descritption du pari
 	private ArrayList <Mise> listMise = new ArrayList<Mise>(); // Create an ArrayList object
 	private boolean openForNewBet; // indique si le parie peut recevoir de nouvelles mises. 
 	private Integer Id;
-	private static Integer id_counter = 0;//Permet de donner un ID unique à chaque pari
-	
+	private static Integer id_counter = 0;//Permet de donner un ID unique ï¿½ chaque pari
 	//constructor
-	public Pari(Utilisateur creator) {
+	public Pari(Delegue creator) {
 		this.Id = id_counter;
 		id_counter ++;
 		System.out.println("Un pari a ete cree");
@@ -20,7 +19,6 @@ public class Pari {
 		commission = 10.0;//commisison recup par le createur du pari (en %)
 	}
 
-	
 	//findPari() : close the bet + redistribute earns => to winner,au commissionnaire et 
 	public void finPari(Integer goodBet) {
 		System.out.println("Fin du pari envoie des montants aux parrieurs et benefice a l'organisateur");
@@ -33,11 +31,12 @@ public class Pari {
 			if(this.listMise.get(i).getBet() == goodBet) {
 				double parieurMise = this.listMise.get(i).getAmount();
 				double gain = parieurMise /(totalAmountWinner) * amountToRedistribute;
-				this.listMise.get(i).getParieur().notifEndParie(this, gain);
+				this.listMise.get(i).getParieur().notifEndParie(this, gain + parieurMise);
 			}
 		}
 		this.closePari();
 		listMise.clear();
+		creator.removePari(this.getId());
 	}
 	
 	//openPari() : open Bet
@@ -77,7 +76,8 @@ public class Pari {
 		return total;
 	}
 
-	//getTotalAmoutFromWinner() : having the amount of the winner or the one who has the good bet
+	
+	//getTotalAmoutFromWinner() : return the total amout bet by the winners
 	private Double getTotalAmoutFromWinner(Integer goodBet){
 		Double total = 0.0;
 		for(int i = 0; i <this.listMise.size(); i ++) {
@@ -107,7 +107,9 @@ public class Pari {
 	public Double getComission() {
 		return commission;
 	}
-	public static Integer getIdCounter() {
+	
+	//Pemrmet de recuperer un id de pari libre
+public static Integer getIdCounter() {
 		return id_counter;
 	}
 	

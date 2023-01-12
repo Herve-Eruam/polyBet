@@ -6,7 +6,7 @@ public class PariTest {
 
 	@Test
 	public void testPari() {
-		Utilisateur testUser = new Eleve("0", "testEleve");
+		Delegue testUser = new Delegue("0", "testEleve");
 		int old_id_counter = Pari.getIdCounter();
 		Pari pariTest = new Pari(testUser);
 		int new_id_counter = Pari.getIdCounter();
@@ -15,24 +15,24 @@ public class PariTest {
 
 	@Test
 	public void testFinPari() {
-		Utilisateur userTestOrga = new Eleve("0", "testEleveOrganisateur");
+		Delegue userTestOrga = new Delegue("0", "testEleveOrganisateur");
 		Pari pariTest = new Pari(userTestOrga);
 		pariTest.openPari();
 		
-		Utilisateur userTest1 = new Eleve("1", "testEleve1");
-		Double amount = 20.0;
+		Eleve userTest1 = new Eleve("1", "testEleve1");
+		Double amountUser1 = 20.0;
 		Integer bet = 10;
-		pariTest.addMise(userTest1, amount, bet);
+		pariTest.addMise(userTest1, amountUser1, bet);
 		
-		Utilisateur userTest2 = new Eleve("2", "testEleve2");
-		amount = 10.0;
+		Eleve userTest2 = new Eleve("2", "testEleve2");
+		Double amountUser2 = 10.0;
 		bet = 13;
-		pariTest.addMise(userTest2, amount, bet);
+		pariTest.addMise(userTest2, amountUser2, bet);
 		
-		Utilisateur userTest3 = new Eleve("3", "testEleve3");
-		amount = 10.0;
+		Eleve userTest3 = new Eleve("3", "testEleve3");
+		Double amountUser3 = 10.0;
 		bet = 13;
-		pariTest.addMise(userTest3, amount, bet);
+		pariTest.addMise(userTest3, amountUser3, bet);
 		
 		Double walletUserOrga = userTestOrga.getWallet();
 		Double walletUser1 = userTest1.getWallet();
@@ -50,13 +50,13 @@ public class PariTest {
 		double toRedistribute = 20 - 20*comission/100;
 		assertTrue(20*(comission/100) == gainUserOrga, "Le gain de l'organisateur n'est pas cohérant");
 		assertTrue(gainUser1 == 0, "Le gain des perdant n'est pas cohérant");
-		assertTrue(gainUser2 == toRedistribute/2, "Le gain des gagnant n'est pas cohérant");
-		assertTrue(gainUser3 == toRedistribute/2, "Le gain des gagnant n'est pas cohérant");	
+		assertTrue(gainUser2 == toRedistribute/2 + amountUser2, "Le gain des gagnant n'est pas cohérant");
+		assertTrue(gainUser3 == toRedistribute/2 + amountUser3, "Le gain des gagnant n'est pas cohérant");	
 	}
 
 	@Test
 	public void testOpenPari() {
-		Utilisateur userTestOrga = new Eleve("0", "testEleveOrganisateur");
+		Delegue userTestOrga = new Delegue("0", "testEleveOrganisateur");
 		Pari pariTest = new Pari(userTestOrga);	
 		pariTest.openPari();
 		boolean state = pariTest.getPariOpenForNewBetState();
@@ -65,7 +65,7 @@ public class PariTest {
 
 	@Test
 	public void testClosePari() {
-		Utilisateur userTestOrga = new Eleve("0", "testEleveOrganisateur");
+		Delegue userTestOrga = new Delegue("0", "testEleveOrganisateur");
 		Pari pariTest = new Pari(userTestOrga);	
 		pariTest.closePari();
 		boolean state = pariTest.getPariOpenForNewBetState();
@@ -74,7 +74,7 @@ public class PariTest {
 
 	@Test
 	public void testAddMise() {
-		Utilisateur userTestOrga = new Eleve("0", "testEleveOrganisateur");
+		Delegue userTestOrga = new Delegue("0", "testEleveOrganisateur");
 		Pari pariTest = new Pari(userTestOrga);	
 		int nbMise = pariTest.getNbMise();
 		pariTest.closePari();
@@ -89,7 +89,7 @@ public class PariTest {
 
 	@Test
 	public void testSetDescription() {
-		Utilisateur userTestOrga = new Eleve("0", "testEleveOrganisateur");
+		Delegue userTestOrga = new Delegue("0", "testEleveOrganisateur");
 		Pari pariTest = new Pari(userTestOrga);
 		String desc = "test 1234";
 		pariTest.setDescription(desc);

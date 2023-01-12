@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
 
-public abstract class Utilisateur implements Parrieur {
+public abstract class Utilisateur  {
 	//attributes
-	private String id;
-	private String nom;
-	private double wallet;
+	protected String id;
+	protected String nom;
+	protected double wallet;
 	private static ArrayList<String> listId = new ArrayList<String>();
 	
 	//constructor
@@ -21,18 +21,6 @@ public abstract class Utilisateur implements Parrieur {
 		return nom;
 	}
 	
-	//chatter() : chat
-	protected void chatter() {
-		System.out.println("Chatter");
-	}
-	
-	//notifEndParie() : 
-	public void notifEndParie(Pari pari, Double gain) {
-		System.out.println(nom + " gagne " + gain);
-
-		wallet += gain;
-	}
-	
 	//getWallet() : montre le montant de l'utilisateur
 	public double getWallet() {
 		return wallet;
@@ -40,7 +28,10 @@ public abstract class Utilisateur implements Parrieur {
 	
 	//cashout(): permet de récupérer les gains
 	public void cashOut(String accountNo) {
+		//realiser le transfert (non implementé)
+		this.wallet = 0;
 		System.out.println("Virrement effectué sur le compte N°" + accountNo);
+		
 	}
 
 

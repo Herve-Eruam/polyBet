@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Eleve extends Utilisateur {
+public class Eleve extends Utilisateur implements Parrieur {
 	//attributes
 	protected ArrayList<Mise> listMise;
 	
@@ -21,11 +21,13 @@ public class Eleve extends Utilisateur {
 		
 	}
 	
-	//creerPariPerso() : allows Eleve to create own bet
-	public void creerPariPerso() {
+	//notifEndParie() : 
+		public void notifEndParie(Pari pari, Double gain) {
+			System.out.println(nom + " gagne " + gain);
+
+			wallet += gain;
+		}
 		
-}
-	
 	
 	
 	
